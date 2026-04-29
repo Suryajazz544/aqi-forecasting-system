@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQI Monitor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <span class="logo-text">AQI Monitor</span>
+      <span class="header-time" id="lastUpdated"></span>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="loading-screen" id="loadingScreen">
+      <div class="spinner"></div>
+      <p>Getting your location...</p>
+    </div>
+
+    <div class="error-screen hidden" id="errorScreen">
+      <p class="error-title">Location access needed</p>
+      <p class="error-sub">We need your location to show local air quality.</p>
+      <button class="btn-retry" onclick="requestLocation()">Try again</button>
+    </div>
+
+    <div class="dashboard hidden" id="dashboard">
+
+      <div class="location-row">
+        <span class="location-dot"></span>
+        <span class="location-name" id="cityName">—</span>
+      </div>
+
+      <div class="aqi-hero" id="aqiCard">
+        <div class="aqi-big" id="aqiNumber">—</div>
+        <div class="aqi-right">
+          <div class="aqi-category" id="aqiBadge">—</div>
+          <div class="aqi-msg" id="aqiMessage">—</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="weather-row">
+        <div class="weather-stat">
+          <span class="ws-val" id="temperature">—</span>
+          <span class="ws-unit">°C</span>
+          <span class="ws-label">Temp</span>
+        </div>
+        <div class="weather-stat">
+          <span class="ws-val" id="humidity">—</span>
+          <span class="ws-unit">%</span>
+          <span class="ws-label">Humidity</span>
+        </div>
+        <div class="weather-stat">
+          <span class="ws-val" id="windSpeed">—</span>
+          <span class="ws-unit">m/s</span>
+          <span class="ws-label">Wind</span>
+        </div>
+        <div class="weather-stat">
+          <span class="ws-val ws-desc" id="weatherDesc">—</span>
+          <span class="ws-label">Sky</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="section-label">Pollutants</p>
+      <div class="pollutants-list">
+        <div class="p-row">
+          <span class="p-name">PM2.5</span>
+          <span class="p-val" id="pm25">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+        <div class="p-row">
+          <span class="p-name">PM10</span>
+          <span class="p-val" id="pm10">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+        <div class="p-row">
+          <span class="p-name">NO₂</span>
+          <span class="p-val" id="no2">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+        <div class="p-row">
+          <span class="p-name">O₃</span>
+          <span class="p-val" id="o3">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+        <div class="p-row">
+          <span class="p-name">CO</span>
+          <span class="p-val" id="co">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+        <div class="p-row">
+          <span class="p-name">SO₂</span>
+          <span class="p-val" id="so2">—</span>
+          <span class="p-unit">µg/m³</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="section-label">Forecast</p>
+      <div class="forecast-row">
+        <div class="fc-card">
+          <span class="fc-time">1 hr</span>
+          <span class="fc-val" id="f1hr">—</span>
+          <span class="fc-cat" id="f1hrCat">—</span>
+        </div>
+        <div class="fc-card">
+          <span class="fc-time">3 hrs</span>
+          <span class="fc-val" id="f3hr">—</span>
+          <span class="fc-cat" id="f3hrCat">—</span>
+        </div>
+        <div class="fc-card">
+          <span class="fc-time">6 hrs</span>
+          <span class="fc-val" id="f6hr">—</span>
+          <span class="fc-cat" id="f6hrCat">—</span>
+        </div>
+        <div class="fc-card">
+          <span class="fc-time">24 hrs</span>
+          <span class="fc-val" id="f24hr">—</span>
+          <span class="fc-cat" id="f24hrCat">—</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <button class="chat-fab" id="chatFab" onclick="toggleChat()">Ask AI</button>
+
+  <div class="chat-panel hidden" id="chatPanel">
+    <div class="chat-header">
+      <span>Air Quality Assistant</span>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg ai">Hi! Ask me anything about the air quality around you.</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput"
+             placeholder="e.g. Is it safe to go for a run?"
+             onkeydown="if(event.key==='Enter') sendMessage()" />
+      <button class="chat-send" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

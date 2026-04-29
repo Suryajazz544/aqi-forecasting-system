@@ -1,51 +1,33 @@
 # Data Processing
 pandas>=2.2.0
 numpy>=1.26.3
-scipy>=1.13.0
 
-# Machine Learning & Deep Learning
+# Machine Learning
 scikit-learn>=1.5.0
 xgboost>=2.1.0
-tensorflow>=2.16.0
+catboost>=1.2.0
+dill
 
-# Web Framework (Backend API)
+# Web Framework
 flask>=3.0.0
 flask-cors>=4.0.0
 python-dotenv>=1.0.0
 
-# Database
-pymongo>=4.6.0
-sqlalchemy>=2.0.25
+# AI Chatbot
+groq>=0.9.0
 
-# IoT & Messaging
-paho-mqtt>=1.6.1
+# External APIs
+requests>=2.31.0
 
-# Visualization & EDA
+# Visualization & EDA (notebooks)
 matplotlib>=3.8.2
 seaborn>=0.13.1
-plotly>=5.18.0
 
 # Jupyter & Notebooks
 jupyter>=1.0.0
 ipython>=8.20.0
-ipywidgets>=8.1.1
-
-# API Testing & Documentation
-requests>=2.31.0
-
-# Utilities
-python-dateutil>=2.8.2
-pytz>=2023.3
-
-# Code Quality
-black>=23.12.1
-pylint>=3.0.3
-flake8>=6.1.0
-
-# Testing
-pytest>=7.4.4
-pytest-cov>=4.1.0
 
 # Deployment
 gunicorn>=21.2.0
-python-multipart>=0.0.6
+
+-e .
