@@ -79,22 +79,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/debug')
-def debug():
-    import os
-    model_exists = os.path.exists('artifacts/model.pkl')
-    preprocessor_exists = os.path.exists('artifacts/preprocessor.pkl')
-    data_exists = os.path.exists('data/preprocessed/city_day_final_for_ml.csv')
-    model_size = os.path.getsize('artifacts/model.pkl') if model_exists else 0
-    return jsonify({
-        'model_pkl':      model_exists,
-        'model_size_mb':  round(model_size / 1024 / 1024, 2),
-        'preprocessor':   preprocessor_exists,
-        'data_csv':       data_exists,
-        'cwd':            os.getcwd(),
-    })
-
-
 @app.route('/api/aqi', methods=['POST'])
 def get_aqi():
     try:
