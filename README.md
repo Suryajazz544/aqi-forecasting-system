@@ -224,7 +224,12 @@ The web app shows:
 
 ## Author
 
-Surya Prakash
+Surya Mulugu [Team Leader/Pipeline/Backend/Frontend]
+Lucky Rajput [EDA/ML Trainer]
+Diya Darekar [EDA/ML Trainer]
+Alvaz Patel [Backend/Frontend]
+Suresh D Tak[reports]
+
 
 
 ---
