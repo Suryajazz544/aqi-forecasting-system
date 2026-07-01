@@ -159,7 +159,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ### Step 5: Train the ML model (first time only)
 ```bash
-python -m src.components.data_ingestion
+python -m src.pipeline.train_pipeline
 ```
 
 ### Step 6: Run data ingestion (normal)
@@ -235,13 +235,13 @@ The web app shows:
 
 ---
 
-## Author
+## Team Members
 
-Surya Mulugu [Team Leader/Pipeline/Backend/Frontend]
-Lucky Rajput [EDA/ML Trainer]
-Diya Darekar [EDA/ML Trainer]
-Alvaz Patel [Backend/Frontend]
-Suresh D Tak[reports]
+- Surya Prakash Mulugu — Team Leader, Pipeline, Backend, Frontend
+- Lucky Rajput — EDA, ML Trainer
+- Diya Darekar — EDA, ML Trainer
+- Alvaz Patel — Backend, Frontend
+- Suresh D Tak — Reports
 
 
 
