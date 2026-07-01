@@ -162,7 +162,12 @@ GEMINI_API_KEY=your_gemini_api_key
 python -m src.components.data_ingestion
 ```
 
-### Step 6: Run the web app
+### Step 6: Run data ingestion (normal)
+```bash
+python -m src.components.data_ingestion
+```
+
+### Step 7: Run the web app
 ```bash
 python app.py
 ```
@@ -172,6 +177,14 @@ Open `http://localhost:5000` in your browser.
 ---
 
 ## Sample Output
+
+### AQI Overview and Weather
+
+![AQI overview and current weather](docs/screenshots/aqi-overview.png)
+
+### Pollutants, Forecast, and AI Assistant
+
+![AQI pollutants, forecast, and AI assistant](docs/screenshots/aqi-forecast-assistant.png)
 
 After training, the following are generated:
 ```
