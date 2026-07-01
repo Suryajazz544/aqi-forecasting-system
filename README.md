@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project predicts real-time and forecasted Air Quality Index (AQI) values based on live pollutant and weather data fetched from OpenWeatherMap. It uses a trained machine learning model to make predictions and includes a Gemini AI-powered chatbot for health advice.
+This project predicts real-time and forecasted Air Quality Index (AQI) values based on live pollutant and weather data fetched from OpenWeatherMap. It uses a trained machine learning model to make predictions and includes a Groq-powered chatbot for health advice.
 
 The project follows a modular ML pipeline architecture — data ingestion, transformation, model training, and a production Flask web app.
 
@@ -13,7 +13,7 @@ The project follows a modular ML pipeline architecture — data ingestion, trans
 - Fetch live air pollution and weather data from OpenWeatherMap API
 - Predict AQI using a trained Random Forest regression model
 - Forecast AQI for the next 1, 3, 6, and 24 hours
-- Provide AI-powered health advice via Gemini chatbot
+- Provide AI-powered health advice via a Groq LLM chatbot
 - Deploy a clean, responsive web interface
 
 ---
@@ -30,24 +30,35 @@ Given real-time pollutant readings (PM2.5, PM10, NO2, O3, CO, SO2, etc.) and wea
 aqi-forecasting-system/
 │
 ├── artifacts/                  # Generated model and preprocessor files
-│   ├── model.pkl
+│   ├── model.pkl               # Generated after training (Git-ignored)
 │   └── preprocessor.pkl
 │
 ├── data/
-│   └── preprocessed/           # Cleaned dataset ready for ML
+│   ├── raw/
+│   │   ├── city_day.csv
+│   │   └── city_day_with_weather.csv
+│   └── preprocessed/
+│       ├── city_day_cleaned_v1.csv
 │       └── city_day_final_for_ml.csv
 │
+├── docs/
+│   └── screenshots/
+│       ├── aqi-overview.png
+│       └── aqi-forecast-assistant.png
+│
 ├── notebooks/                  # Jupyter notebooks (EDA & model training)
-│   ├── 1_EDA_AQI_Dataset.ipynb
+│   ├── 1_AQI_EDA.ipynb
 │   └── 2_ML_Model_Training.ipynb
 │
 ├── src/
 │   ├── components/
+│   │   ├── __init__.py
 │   │   ├── data_ingestion.py
 │   │   ├── data_transformation.py
 │   │   └── model_trainer.py
 │   │
 │   ├── pipeline/
+│   │   ├── __init__.py
 │   │   ├── train_pipeline.py
 │   │   └── predict_pipeline.py
 │   │
@@ -63,9 +74,12 @@ aqi-forecasting-system/
 ├── templates/
 │   └── index.html
 │
+├── .gitignore
 ├── app.py                      # Flask web application
-├── setup.py
+├── codes to run.txt            # Common local commands
+├── LICENSE
 ├── requirements.txt
+├── setup.py
 └── README.md
 ```
 
@@ -77,7 +91,7 @@ aqi-forecasting-system/
 - **Pandas, NumPy** — data processing
 - **Scikit-learn, XGBoost, CatBoost** — machine learning
 - **Flask, Flask-CORS** — web framework
-- **Google Gemini (google-genai)** — AI chatbot
+- **Groq (Llama models)** — AI chatbot
 - **OpenWeatherMap API** — live air quality and weather data
 - **HTML, CSS, JavaScript** — frontend
 
@@ -154,7 +168,7 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 ```
 OPENWEATHER_API_KEY=your_openweathermap_api_key
-GEMINI_API_KEY=your_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
 ```
 
 ### Step 5: Train the ML model (first time only)
@@ -198,7 +212,7 @@ The web app shows:
 - Current weather (temperature, humidity, wind)
 - Pollutant breakdown (PM2.5, PM10, NO2, O3, CO, SO2)
 - AQI forecast for +1, +3, +6, +24 hours
-- AI chatbot for health advice
+- Groq-powered chatbot for health advice
 
 ---
 
